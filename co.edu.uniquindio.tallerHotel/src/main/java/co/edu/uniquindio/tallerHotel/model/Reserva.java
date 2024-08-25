@@ -18,9 +18,9 @@ public class Reserva {
     private LocalDate fechaIngreso;
     private LocalDate fechaSalida;
     private Habitacion habitacion;
-    private EstadoReserva estadoReserva;
     private int cantidadPersonas;
     private String codigo;
+    private EstadoReserva estadoReserva;
     private float valorTotal;
 
 }

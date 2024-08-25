@@ -1,6 +1,5 @@
-package co.edu.uniquindio.tallerHotel.model;
+package co.edu.uniquindio.tallerHotel.model.service;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
