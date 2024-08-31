@@ -17,13 +17,19 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@AllArgsConstructor
 
 public class Hotel implements ServicioHabitacion {
 
     private final Habitacion[][] habitaciones;
     private final ArrayList<Reserva> reservas;
     private final ArrayList<Cliente> clientes;
+
+    public Hotel(Habitacion[][] habitaciones, ArrayList<Reserva> reservas, ArrayList<Cliente> clientes) {
+
+        this.habitaciones = habitaciones;
+        this.reservas = reservas;
+        this.clientes = clientes;
+    }
 
 
     /**
@@ -180,5 +186,4 @@ public class Hotel implements ServicioHabitacion {
             habitacion.setDisponible(true);
         }
     }
-
 }
