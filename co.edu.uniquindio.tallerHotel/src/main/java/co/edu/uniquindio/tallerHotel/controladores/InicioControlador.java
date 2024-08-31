@@ -91,7 +91,7 @@ public class InicioControlador implements Initializable {
      * vista.
      */
 
-    @Override
+
     public void actualizar(int numeroHabitacion, boolean marcar) {
 
         for (int i = 0; i < botones.length; i++) {

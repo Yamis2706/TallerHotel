@@ -5,7 +5,7 @@ import co.edu.uniquindio.tallerHotel.model.enums.TipoHabitacion;
 import co.edu.uniquindio.tallerHotel.model.service.ServicioHabitacion;
 
 import lombok .Getter;
-import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -24,7 +24,7 @@ public class Hotel implements ServicioHabitacion {
     private final ArrayList<Reserva> reservas;
     private final ArrayList<Cliente> clientes;
 
-    public Hotel(Habitacion[][] habitaciones, ArrayList<Reserva> reservas, ArrayList<Cliente> clientes) {
+    public Hotel() {
 
         this.habitaciones = habitaciones;
         this.reservas = reservas;
