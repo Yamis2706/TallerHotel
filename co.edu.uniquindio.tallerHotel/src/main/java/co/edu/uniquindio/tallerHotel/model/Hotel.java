@@ -6,7 +6,6 @@ import co.edu.uniquindio.tallerHotel.model.service.ServicioHabitacion;
 
 import lombok .Getter;
 import lombok.Setter;
-import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -15,8 +14,8 @@ import java.util.UUID;
  * asociados.
  */
 
-@Getter
-@Setter
+
+
 
 public class Hotel implements ServicioHabitacion {
 

@@ -11,15 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@Getter
-@Setter
 
 /**Clase que representa el Controlador Principal de la AppHotel
  *

@@ -16,7 +16,6 @@ public class Habitacion {
     public int numero;
     public TipoHabitacion tipoHabitacion;
     public float precio;
-
     public void setDisponible(boolean b) {
     }
 }
