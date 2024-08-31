@@ -1,11 +1,8 @@
 package co.edu.uniquindio.tallerHotel.model;
 
-import co.edu.uniquindio.tallerHotel.model.constante.TamanoMatriz;
 import co.edu.uniquindio.tallerHotel.model.enums.EstadoReserva;
 import co.edu.uniquindio.tallerHotel.model.enums.TipoHabitacion;
 import co.edu.uniquindio.tallerHotel.model.service.ServicioHabitacion;
-import co.edu.uniquindio.tallerHotel.model.Habitacion;
-import co.edu.uniquindio.tallerHotel.model.Cliente;
 
 import lombok .Getter;
 import lombok.Setter;
@@ -14,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/** Esta clase representa un Hotel con sus habitaciones, reservas y clientes
+/** Clase que representa un Hotel con sus habitaciones, reservas y clientes
  * asociados.
  */
 
@@ -27,14 +24,6 @@ public class Hotel implements ServicioHabitacion {
     private final Habitacion[][] habitaciones;
     private final ArrayList<Reserva> reservas;
     private final ArrayList<Cliente> clientes;
-
-
-    public Hotel() {
-        this.habitaciones = new Habitacion[TamanoMatriz.FILAS][TamanoMatriz.COLUMNAS];
-        this.reservas = new ArrayList<>();
-        this.clientes = new ArrayList<>();
-        inicializarHabitaciones();
-    }
 
 
     /**
@@ -64,9 +53,6 @@ public class Hotel implements ServicioHabitacion {
 
     /**
      * Método que busca un cliente por su cédula en la lista de clientes
-     *
-     * @param cedula Cédula del cliente
-     * @return Cliente encontrado
      */
 
 
@@ -83,37 +69,35 @@ public class Hotel implements ServicioHabitacion {
 
     /**
      * Método para crear un cliente y lo almacena en la lista de clientes
-     *
-     * @param nombre Nombre del cliente
-     * @param cedula Cédula del cliente
-     * @return Cliente creado
-     * @throws Exception Si la cédula, nombre son nulos o vacíos
      */
 
-    private Habitacion crearCliente(String cedula, String nombre) throws Exception {
-
-        if (cedula == null || cedula.isBlank()) {
-            throw new Exception("La cédula es obligatoria");
-        }
+    private Cliente crearCliente(String nombre, String cedula) throws Exception {
 
         if (nombre == null || nombre.isBlank()) {
             throw new Exception("El nombre es obligatorio");
         }
 
+        if (cedula == null || cedula.isBlank()) {
+            throw new Exception("La cédula es obligatoria");
+        }
 
         if (buscarCliente(cedula) != null) {
             throw new Exception("El cliente ya existe");
         }
-        return null;
-    }
 
+        Cliente cliente = Cliente.builder()
+                .nombre(nombre)
+                .cedula(cedula)
+                .build();
+
+        clientes.add(cliente);
+        return cliente;
+    }
 
 
 
     /**
      * Método que busca una habitación por su número en la matriz de habitaciones
-     * @param numero Número de la habitación
-     * @return Habitación encontrada
      */
 
 
@@ -128,16 +112,44 @@ public class Hotel implements ServicioHabitacion {
         return null;
     }
 
-    @Override
-    public Reserva crearReserva(String nombre, String cedula, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion, int cantidadPersonas) throws Exception {
-        return null;
+
+    public Reserva crearReserva(String nombre, String cedula, LocalDate fechaEntrada,
+                                LocalDate fechaSalida, int numeroHabitacion, int cantidadPersonas) throws Exception {
+        Cliente cliente = buscarCliente(cedula);
+        Habitacion habitacion = buscarHabitacion(numeroHabitacion);
+
+        if (cliente == null) {
+            throw new Exception("No hay registro de un cliente con la cédula " +
+                    "proporcionada");
+        }
+
+        if (habitacion == null) {
+            throw new Exception("No se encuentra una habitación con el número proporcionado");
+        }
+
+        for (Reserva reservaExistente : reservas) {
+            if (reservaExistente.getHabitacion().getNumero() == numeroHabitacion
+                    && reservaExistente.getEstadoReserva() == EstadoReserva.ACTIVA) {
+                throw new Exception("La habitación ya está reservada para las" +
+                        " fechas seleccionadas");
+            }
+        }
+
+        float valorTotal = habitacion.getPrecio() * (fechaSalida.toEpochDay() - fechaEntrada.toEpochDay());
+        Reserva reserva = new Reserva(cliente, fechaEntrada, fechaSalida, habitacion, cantidadPersonas,
+                UUID.randomUUID().toString(), EstadoReserva.ACTIVA, valorTotal);
+        reservas.add(reserva);
+
+        habitacion.setDisponible(false);
+        cliente.getReservas().add(reserva);
+
+        return reserva;
     }
+
 
 
     /**
      * Método que obtiene una reserva por el número de la habitación
-     * @param codigoHabitacion Número de la habitación
-     * @return Reserva encontrada
      */
     @Override
     public Reserva obtenerReserva(int codigoHabitacion){
@@ -150,9 +162,10 @@ public class Hotel implements ServicioHabitacion {
         return null;
     }
 
+
+
     /**
      * Método que libera una habitación por su número
-     * @param numero Número de la habitación
      */
     @Override
     public void liberarHabitacion(int numero){

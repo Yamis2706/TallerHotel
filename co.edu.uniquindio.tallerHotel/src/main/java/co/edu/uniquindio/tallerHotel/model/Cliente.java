@@ -1,19 +1,19 @@
 package co.edu.uniquindio.tallerHotel.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.ArrayList;
 
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Builder
 
 
 public class Cliente {
     private String nombre;
     private String cedula;
-    private int reserva;
+    private ArrayList<Reserva> reservas;
 
 }
