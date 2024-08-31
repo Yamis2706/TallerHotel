@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import lombok.Getter;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 
 
 /**Clase que representa el Controlador Principal de la AppHotel
@@ -23,7 +25,7 @@ public class ControladorPrincipal implements ServicioHabitacion{
 
     @Getter
     private final Hotel hotel;
-    public  static ControladorPrincipal INSTANCIA;
+    public static ControladorPrincipal INSTANCIA;
 
     private ControladorPrincipal(){
         hotel = new Hotel();

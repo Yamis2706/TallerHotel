@@ -2,19 +2,16 @@ package co.edu.uniquindio.tallerHotel.controladores;
 
 import co.edu.uniquindio.tallerHotel.controladores.observador.Observador;
 import co.edu.uniquindio.tallerHotel.model.Habitacion;
-import co.edu.uniquindio.tallerHotel.model.Hotel;
 import co.edu.uniquindio.tallerHotel.model.constante.TamanoMatriz;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
-import java.awt.event.ActionEvent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,34 +19,30 @@ import java.util.ResourceBundle;
 /** Clase que representa el controlador de la vista Inicio.
  */
 
-public class InicioControlador implements Initializable, Observador {
+public class InicioControlador implements Initializable {
 
     @FXML
     private GridPane panelBotones;
     private final ControladorPrincipal controladorPrincipal;
     private Button[][] botones;
 
-    public InicioControlador(){
+    public InicioControlador() {
         controladorPrincipal = ControladorPrincipal.getInstance();
     }
 
 
-    @Override
-    public void initializable(URL url, ResourceBundle resourceBundle) {
-        crearMatrizBotones();
-    }
 
-
-    /** Método que se encarga de crear los botones de las habitaciones y
+    /**
+     * Método que se encarga de crear los botones de las habitaciones y
      * añadirlos al panel.
      */
 
-    public void crearMatrizBotones(){
+    public void crearMatrizBotones() {
         Habitacion[][] matrizHabitaciones = controladorPrincipal.getHotel().getHabitaciones();
         botones = new Button[TamanoMatriz.FILAS][TamanoMatriz.COLUMNAS];
 
-        for (int i = 0; 1 < matrizHabitaciones.length; i++){
-            for (int j = 0; j < matrizHabitaciones.length; j++){
+        for (int i = 0; 1 < matrizHabitaciones.length; i++) {
+            for (int j = 0; j < matrizHabitaciones.length; j++) {
                 final int numeroHabitacion = matrizHabitaciones[i][j].getNumero();
 
 
@@ -68,8 +61,7 @@ public class InicioControlador implements Initializable, Observador {
 
                 //Añadir evento al botón para mostrar la vista de la
                 // Habitación con el Click.
-                boton.setOnAction( e -> mostrarVistaHabitacion(numeroHabitacion));
-
+                boton.setOnAction(e -> mostrarVistaHabitacion(numeroHabitacion));
 
 
                 //Añadir botón al panel y a la matriz de botones.
@@ -82,35 +74,46 @@ public class InicioControlador implements Initializable, Observador {
     }
 
 
+    /**
+     * Método que se encarga de mostrar la vista de la Habitación.
+     */
 
-    /** Método que se encarga de mostrar la vista de la Habitación.
-    */
-
-    public void mostrarVistaHabitacion(int numeroHabitacion){
+    public void mostrarVistaHabitacion(int numeroHabitacion) {
         FXMLLoader loader = controladorPrincipal.navegar("/crearReserva.fxml"
                 , "Crear Reserva");
         CrearReservaControlador controlador = loader.getController();
-        controlador.inicializarDatos(numeroHabitacion, this);
+        controlador.inicializarDatos(numeroHabitacion);
     }
 
 
-    /** Método que se encarga de actualizar el estado de la Habitación en la
+    /**
+     * Método que se encarga de actualizar el estado de la Habitación en la
      * vista.
      */
 
     @Override
-    public void actualizar(int numeroHabitacion, boolean marcar){
+    public void actualizar(int numeroHabitacion, boolean marcar) {
 
-        for (int i = 0; i < botones.length; i++);
-            for (int j = 0; j < botones[j].length; j++){
-                if(botones[i][j].getText().contains(String.valueOf(numeroHabitacion))){
-                    if(marcar){
-                        
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                if (botones[i][j].getText().contains(String.valueOf(numeroHabitacion))) {
+                    if (marcar) {
+                        botones[i][j].setBackground(Background.fill(Paint.valueOf("#DB5461")));
+                    } else {
+                        botones[i][j].setBackground(Background.fill(Paint.valueOf("#D3D5D4")));
                     }
+                    return;
                 }
             }
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        crearMatrizBotones();
 
     }
+
 
 
 }

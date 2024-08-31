@@ -15,6 +15,7 @@ import java.util.UUID;
  */
 
 
+@Getter
 
 
 public class Hotel implements ServicioHabitacion {

@@ -7,8 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
 
-import javax.swing.*;
-
 
 /** Clase que representa el controlador de la vista CrearReserva
  */
@@ -52,7 +50,7 @@ public class CrearReservaControlador {
     /** Método que inicializa los datos de la vista.
      */
 
-    public void inicializarDatos(int numeroHabitacion, Observador observador){
+    public void inicializarDatos(int numeroHabitacion){
         this.numeroHabitacion = numeroHabitacion;
         this.observador = observador;
         cargarDatos();
