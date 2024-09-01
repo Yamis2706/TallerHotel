@@ -1,5 +1,6 @@
 package co.edu.uniquindio.tallerHotel.model;
 
+import co.edu.uniquindio.tallerHotel.model.constante.TamanoMatriz;
 import co.edu.uniquindio.tallerHotel.model.enums.EstadoReserva;
 import co.edu.uniquindio.tallerHotel.model.enums.TipoHabitacion;
 import co.edu.uniquindio.tallerHotel.model.service.ServicioHabitacion;
@@ -18,17 +19,19 @@ import java.util.UUID;
 @Getter
 
 
-public class Hotel implements ServicioHabitacion {
+public class Hotel extends ServicioHabitacion {
+
 
     private final Habitacion[][] habitaciones;
     private final ArrayList<Reserva> reservas;
     private final ArrayList<Cliente> clientes;
 
-    public Hotel() {
 
-        this.habitaciones = habitaciones;
-        this.reservas = reservas;
-        this.clientes = clientes;
+    public Hotel() {
+        this.habitaciones = new Habitacion[TamanoMatriz.FILAS][TamanoMatriz.COLUMNAS];
+        this.reservas = new ArrayList<>();
+        this.clientes = new ArrayList<>();
+        inicializarHabitaciones();
     }
 
 
@@ -157,7 +160,7 @@ public class Hotel implements ServicioHabitacion {
     /**
      * Método que obtiene una reserva por el número de la habitación
      */
-    @Override
+
     public Reserva obtenerReserva(int codigoHabitacion){
         for(Reserva reserva : reservas){
             if(reserva.getHabitacion().getNumero() == codigoHabitacion && reserva.getEstadoReserva()
@@ -173,7 +176,7 @@ public class Hotel implements ServicioHabitacion {
     /**
      * Método que libera una habitación por su número
      */
-    @Override
+
     public void liberarHabitacion(int numero){
         Habitacion habitacion = buscarHabitacion(numero);
         Reserva reserva = obtenerReserva(numero);

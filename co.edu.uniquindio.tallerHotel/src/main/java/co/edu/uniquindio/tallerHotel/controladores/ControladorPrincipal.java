@@ -17,11 +17,12 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 
+
 /**Clase que representa el Controlador Principal de la AppHotel
  *
  */
 
-public class ControladorPrincipal implements ServicioHabitacion{
+public class ControladorPrincipal extends ServicioHabitacion {
 
     @Getter
     private final Hotel hotel;
@@ -38,17 +39,17 @@ public class ControladorPrincipal implements ServicioHabitacion{
         return INSTANCIA;
     }
 
-    @Override
+
     public Cliente buscarCliente(String cedula) {
         return hotel.buscarCliente(cedula);
     }
 
-    @Override
+
     public Habitacion buscarHabitacion(int numeroHabitacion){
         return hotel.buscarHabitacion(numeroHabitacion);
     }
 
-    @Override
+
     public Reserva crearReserva(String nombre, String cedula,
                                 LocalDate fechaIngreso, LocalDate fechaSalida
             , int numeroHabitacion, int cantidadPersonas) throws Exception{
@@ -56,12 +57,11 @@ public class ControladorPrincipal implements ServicioHabitacion{
                 numeroHabitacion, cantidadPersonas);
     }
 
-    @Override
     public Reserva obtenerReserva(int codigoHabitacion){
         return hotel.obtenerReserva(codigoHabitacion);
     }
 
-    @Override
+
     public void liberarHabitacion(int numero){
         hotel.liberarHabitacion(numero);
     }

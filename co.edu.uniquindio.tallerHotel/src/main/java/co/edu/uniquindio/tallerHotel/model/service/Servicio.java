@@ -19,4 +19,8 @@ public class Servicio {
         this.restaurante = restaurante;
         this.limpieza = limpieza;
     }
+
+    public Servicio() {
+
+    }
 }

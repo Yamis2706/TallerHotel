@@ -1,26 +1,19 @@
 package co.edu.uniquindio.tallerHotel.model.service;
 
 
-import co.edu.uniquindio.tallerHotel.model.Cliente;
-import co.edu.uniquindio.tallerHotel.model.Habitacion;
-import co.edu.uniquindio.tallerHotel.model.Reserva;
-import java.time.LocalDate;
+
+public class ServicioHabitacion extends Servicio implements Consumible {
 
 
+    public ServicioHabitacion(String spa, String restaurante, String limpieza) {
+        super(spa, restaurante, limpieza);
+    }
 
-public interface ServicioHabitacion  {
+    public ServicioHabitacion() {
+    }
 
-    Cliente buscarCliente(String cedula);
 
-    Habitacion buscarHabitacion(int numero);
-
-    Reserva crearReserva(String nombre, String cedula,
-                         LocalDate fechaEntrada, LocalDate fechaSalida,
-                         int numeroHabitacion, int cantidadPersonas) throws Exception;
-
-    Reserva obtenerReserva(int codigoHabitacion);
-
-    void liberarHabitacion(int numero);
+    //public Cliente buscarCliente(String cedula);
 
 
 
