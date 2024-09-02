@@ -16,10 +16,9 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @AllArgsConstructor
+@Getter
 
-
-/**Clase que representa el Controlador Principal de la AppHotel
- *
+/** Clase que representa el Controlador Principal de la AppHotel
  */
 
 public class ControladorPrincipal extends ServicioHabitacion {

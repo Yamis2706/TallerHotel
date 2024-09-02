@@ -22,7 +22,7 @@ public class AppHotel extends Application {
 
         Scene scene = new Scene(parent);
         stage.setScene(scene);
-        stage.setTitle("Hotel Sueño Hermoso");
+        stage.setTitle("Hotel Mi Cielito");
         stage.setResizable(false);
         stage.show();
 

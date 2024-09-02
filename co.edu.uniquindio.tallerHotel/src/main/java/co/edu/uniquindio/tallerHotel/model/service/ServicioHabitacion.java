@@ -2,19 +2,22 @@ package co.edu.uniquindio.tallerHotel.model.service;
 
 
 
-public class ServicioHabitacion extends Servicio implements Consumible {
+public class ServicioHabitacion implements Consumible {
 
 
-    public ServicioHabitacion(String spa, String restaurante, String limpieza) {
-        super(spa, restaurante, limpieza);
+    private String servicio;
+    private String bebida;
+    private String alimento;
+
+
+    public ServicioHabitacion(String servicio, String bebida, String alimento) {
+
+
+        this.servicio = servicio;
+        this.bebida = bebida;
+        this.alimento = alimento;
     }
 
     public ServicioHabitacion() {
     }
-
-
-    //public Cliente buscarCliente(String cedula);
-
-
-
 }
