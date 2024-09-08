@@ -2,22 +2,14 @@ package co.edu.uniquindio.tallerHotel.model.service;
 
 
 
-public class ServicioHabitacion implements Consumible {
+public class ServicioHabitacion extends Servicio {
+
+    String bebida;
+    String comida;
 
 
-    private String servicio;
-    private String bebida;
-    private String alimento;
-
-
-    public ServicioHabitacion(String servicio, String bebida, String alimento) {
-
-
-        this.servicio = servicio;
-        this.bebida = bebida;
-        this.alimento = alimento;
-    }
-
-    public ServicioHabitacion() {
+    @Override
+    public String consumir() {
+        return super.consumir();
     }
 }

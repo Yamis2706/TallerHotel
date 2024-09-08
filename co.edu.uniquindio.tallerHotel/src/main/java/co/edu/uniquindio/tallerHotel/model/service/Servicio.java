@@ -9,16 +9,12 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class Servicio {
-    private String spa;
-    private String restaurante;
-    private String limpieza;
+public abstract class Servicio implements Consumible {
+    String nombreServicio;
 
-    public Servicio(String spa, String restaurante, String limpieza) {
-        this.spa = spa;
-        this.restaurante = restaurante;
-        this.limpieza = limpieza;
+
+    @Override
+    public String consumir() {
+        return "";
     }
-
-
 }
