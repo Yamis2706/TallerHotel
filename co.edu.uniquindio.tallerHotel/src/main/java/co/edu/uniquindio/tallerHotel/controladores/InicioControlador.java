@@ -1,11 +1,9 @@
 package co.edu.uniquindio.tallerHotel.controladores;
 
-import co.edu.uniquindio.tallerHotel.controladores.observador.Observador;
 import co.edu.uniquindio.tallerHotel.model.Habitacion;
 import co.edu.uniquindio.tallerHotel.model.constante.TamanoMatriz;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -41,8 +39,8 @@ public class InicioControlador implements Initializable {
         Habitacion[][] matrizHabitaciones = controladorPrincipal.getHotel().getHabitaciones();
         botones = new Button[TamanoMatriz.FILAS][TamanoMatriz.COLUMNAS];
 
-        for (int i = 0; 1 < matrizHabitaciones.length; i++) {
-            for (int j = 0; j < matrizHabitaciones.length; j++) {
+        for (int i = 0; i < matrizHabitaciones.length; i++) {
+            for (int j = 0; j < matrizHabitaciones[0].length; j++) {
                 final int numeroHabitacion = matrizHabitaciones[i][j].getNumero();
 
 
@@ -79,7 +77,7 @@ public class InicioControlador implements Initializable {
      */
 
     public void mostrarVistaHabitacion(int numeroHabitacion) {
-        FXMLLoader loader = controladorPrincipal.navegar("/crearReserva.fxml"
+        FXMLLoader loader = controladorPrincipal.navegar("/co.edu.uniquindio.tallerHotel/crearReserva.fxml"
                 , "Crear Reserva");
         CrearReservaControlador controlador = loader.getController();
         controlador.inicializarDatos(numeroHabitacion);

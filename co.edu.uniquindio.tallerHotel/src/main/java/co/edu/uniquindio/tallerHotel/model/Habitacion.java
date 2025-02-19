@@ -13,6 +13,7 @@ import lombok.ToString;
 @ToString
 
 public class Habitacion {
+
     public int numero;
     public TipoHabitacion tipoHabitacion;
     public float precio;

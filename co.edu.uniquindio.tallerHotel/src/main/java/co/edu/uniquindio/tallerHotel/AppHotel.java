@@ -1,4 +1,4 @@
-package co.edu.uniquindio.tallerHotel.appHotel;
+package co.edu.uniquindio.tallerHotel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +17,13 @@ public class AppHotel extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(AppHotel.class.getResource(
-                "/inicio.fxml"));
+                "/co.edu.uniquindio.tallerHotel/inicio.fxml"));
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent);
         stage.setScene(scene);
-        stage.setTitle("Hotel Mi Cielito");
-        stage.setResizable(false);
+        stage.setTitle("Hotel Mar Azul");
+        //stage.setResizable(false);
         stage.show();
 
     }

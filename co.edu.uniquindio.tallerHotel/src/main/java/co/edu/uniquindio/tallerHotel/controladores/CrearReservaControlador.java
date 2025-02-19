@@ -16,6 +16,10 @@ public class CrearReservaControlador {
     @FXML
     private TextField txtNombre;
 
+
+    @FXML
+    private TextField txtCorreo;
+
     @FXML
     private TextField txtCedula;
 

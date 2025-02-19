@@ -16,7 +16,8 @@
     <GridPane hgap="20.0" vgap="20.0" alignment="CENTER" >
 
         <Label text="Número de identificación:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="txtDocumento" minHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="txtCedula" minHeight="30.0" GridPane.columnIndex="1"
+                   GridPane.rowIndex="0" />
         <Button fx:id="btnBuscar" text="Buscar" minWidth="100.0" minHeight="30.0" onAction="#buscarCliente" style="-fx-background-color: #083D77; -fx-text-fill: #FFFFFF" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
         <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -32,7 +33,7 @@
         <DatePicker fx:id="txtFechaSalida" minHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
         <Label text="Número de personas:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <TextField fx:id="txtNumeroPersonas" minHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <TextField fx:id="txtCantidadPersonas" minHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
     </GridPane>
 

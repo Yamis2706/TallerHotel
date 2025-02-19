@@ -1,6 +1,7 @@
 package co.edu.uniquindio.tallerHotel.model;
 
 import co.edu.uniquindio.tallerHotel.model.constante.TamanoMatriz;
+import co.edu.uniquindio.tallerHotel.model.dto.ActualizarSalonEventoDTO;
 import co.edu.uniquindio.tallerHotel.model.enums.EstadoReserva;
 import co.edu.uniquindio.tallerHotel.model.enums.TipoHabitacion;
 import co.edu.uniquindio.tallerHotel.model.service.ServicioHabitacion;
@@ -104,16 +105,15 @@ public class Hotel extends ServicioHabitacion {
     }
 
 
-
     /**
      * Método que busca una habitación por su número en la matriz de habitaciones
      */
 
 
-    public Habitacion buscarHabitacion(int numero ){
-        for(int i = 0; i < habitaciones.length; i++){
-            for(int j = 0; j < habitaciones[i].length; j++){
-                if(habitaciones[i][j].getNumero() == numero){
+    public Habitacion buscarHabitacion(int numero) {
+        for (int i = 0; i < habitaciones.length; i++) {
+            for (int j = 0; j < habitaciones[i].length; j++) {
+                if (habitaciones[i][j].getNumero() == numero) {
                     return habitaciones[i][j];
                 }
             }
@@ -156,15 +156,14 @@ public class Hotel extends ServicioHabitacion {
     }
 
 
-
     /**
      * Método que obtiene una reserva por el número de la habitación
      */
 
-    public Reserva obtenerReserva(int codigoHabitacion){
-        for(Reserva reserva : reservas){
-            if(reserva.getHabitacion().getNumero() == codigoHabitacion && reserva.getEstadoReserva()
-                    == EstadoReserva.ACTIVA ){
+    public Reserva obtenerReserva(int codigoHabitacion) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getHabitacion().getNumero() == codigoHabitacion && reserva.getEstadoReserva()
+                    == EstadoReserva.ACTIVA) {
                 return reserva;
             }
         }
@@ -172,21 +171,113 @@ public class Hotel extends ServicioHabitacion {
     }
 
 
-
     /**
      * Método que libera una habitación por su número
      */
 
-    public void liberarHabitacion(int numero){
+    public void liberarHabitacion(int numero) {
         Habitacion habitacion = buscarHabitacion(numero);
         Reserva reserva = obtenerReserva(numero);
 
-        if(reserva != null){
+        if (reserva != null) {
             reserva.setEstadoReserva(EstadoReserva.FINALIZADA);
         }
 
-        if(habitacion != null){
+        if (habitacion != null) {
             habitacion.setDisponible(true);
         }
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+    public boolean eliminarSalonEvento(int idSalon) {
+        SalonEvento salonEventoExistente = obtenerSalonEvento(idSalon);
+        if(salonEventoExistente != null){
+            getListaSalonEvento().remove(salonEventoExistente);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public boolean actualizarSalonEvento(ActualizarSalonEventoDTO actualizarSalonEventoDTO) {
+
+        SalonEvento salonEventoExistente =
+                obtenerSalonEvento(actualizarSalonEventoDTO.idSalon());
+
+        if (salonEventoExistente != null) {
+
+            SalonEvento salonEvento = SalonEvento.builder()
+                    .idSalon(actualizarSalonEventoDTO.idSalon())
+                    .capacidad(actualizarSalonEventoDTO.capacidad())
+                    .estadoReserva(actualizarSalonEventoDTO.estadoReserva())
+                    .descripcion(actualizarSalonEventoDTO.descripcion()).build();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private SalonEvento obtenerSalonEvento(int idSalon) {
+        SalonEvento salonEventoExistente = new SalonEvento();
+
+        for (SalonEvento salonEvento: getListaSalonEvento()) {
+            if(salonEvento != null && salonEvento.idSalon != null
+                    &&salonEvento.idSalon.equals(idSalon)){
+                salonEventoExistente = salonEvento;
+                break;
+            }
+        }
+        return  salonEventoExistente;
+    }
+
+
+
+    private SalonEvento getListaSalonEvento() {
+        return (SalonEvento) java.util.List.of();
+    }
+
+
+     public boolean crearSalonEvento(int idSalon, int capacidad,
+     EstadoReserva estadoReserva,
+     String descripcion, int numeroReserva) {
+     {
+     SalonEvento.SalonEventoBuilder salonEvento = SalonEvento.builder();
+
+     salonEvento.idSalon(idSalon);
+     salonEvento.capacidad(capacidad);
+     salonEvento.estadoReserva(estadoReserva);
+     salonEvento.descripcion(descripcion);
+
+     return true;
+     }
+     }
+     */
+
+
+

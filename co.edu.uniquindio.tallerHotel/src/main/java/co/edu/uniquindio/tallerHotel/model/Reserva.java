@@ -23,4 +23,7 @@ public class Reserva {
     private EstadoReserva estadoReserva;
     private float valorTotal;
 
+    public Object getSalonEvento() {
+        return null;
+    }
 }

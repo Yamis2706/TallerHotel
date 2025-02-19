@@ -12,4 +12,9 @@ public class ServicioHabitacion extends Servicio {
     public String consumir() {
         return super.consumir();
     }
+
+    @Override
+    public String reservar() {
+        return reservar();
+    }
 }
